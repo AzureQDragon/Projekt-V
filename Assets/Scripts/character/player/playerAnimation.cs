@@ -6,27 +6,38 @@ using SwordData;
 public class playerAnimation : MonoBehaviour
 {
     public Animator playerAnim;
-    public float attackTime;
+    public float attackMeleeTime;
+    public float attackPrimTime;
+    public float attackPrimDuration;
     public float attackDuration;
+    Shoot Shoot;
     slash slash;
 
     // Start is called before the first frame update
     void Start()
     {
         playerAnim = GetComponent<Animator>();
-        slash = GameObject.FindGameObjectWithTag("playerAttack").GetComponent<slash>();
+        slash = GameObject.FindGameObjectWithTag("playerMelee").GetComponent<slash>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire2")&&Time.time > attackTime)
+        if (Input.GetButton("Fire2")&&Time.time > attackMeleeTime)
         {
-  	        attackTime = Time.time + attackDuration;
+  	        attackMeleeTime = Time.time + attackDuration;
             playerAnim.Play("attack");
 
             slash.dealDamage(slash.target);
+        }
+
+        if (Input.GetButton("Fire1")&&Time.time > attackPrimTime)
+        {
+  	        attackPrimTime = Time.time + attackPrimDuration;
+            playerAnim.Play("attack");
+
+            GetComponent<Shoot>().rangeAttack();
         }
         
     }

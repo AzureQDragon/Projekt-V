@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SwordData;
+using PrimaryWepData;
 
 public class demonBasic : MonoBehaviour
 {
@@ -48,6 +49,23 @@ public class demonBasic : MonoBehaviour
         demonBody.AddForce(moveDirection.normalized * -500f);
 
         Debug.Log("You did: " + meleeAttack.damage + " damage to: " + this.gameObject.name);
+
+        if (health <= 0) {
+            this.gameObject.transform.rotation = Quaternion.Euler(0, 0, 90f);
+            this.SendMessage("death", health, SendMessageOptions.DontRequireReceiver);
+            this.enabled = false;
+        }
+    }
+
+    void takeMeleeDamage(PrimWepAttack primWepAttack)
+    {
+        health -= primWepAttack.damage;
+
+        
+        Vector2 moveDirection = demonBody.transform.position - primWepAttack.player.transform.position;
+        demonBody.AddForce(moveDirection.normalized * -500f);
+
+        Debug.Log("You did: " + primWepAttack.damage + " damage to: " + this.gameObject.name);
 
         if (health <= 0) {
             this.gameObject.transform.rotation = Quaternion.Euler(0, 0, 90f);

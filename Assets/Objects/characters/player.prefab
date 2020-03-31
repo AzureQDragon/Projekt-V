@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 2642918887565426938}
   - component: {fileID: 2642918887565426936}
   - component: {fileID: 2956325672517752886}
+  - component: {fileID: 7984362691718974272}
   - component: {fileID: 2642918887565426937}
   - component: {fileID: 2017050860}
   m_Layer: 8
@@ -192,7 +193,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 0}
-  attackTime: 0
+  attackMeleeTime: 0
+  attackPrimTime: 0
+  attackPrimDuration: 0
   attackDuration: 0.55
 --- !u!114 &2642918887565426936
 MonoBehaviour:
@@ -224,6 +227,21 @@ MonoBehaviour:
   isDead: 0
   HPBar: {fileID: 0}
   godMode: 0
+--- !u!114 &7984362691718974272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2642918887565426918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6e3dacb66bde54bb2066b885c77c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canHit: 0
+  projectilePrefab: {fileID: 5449446883972003481, guid: 3e4aafd91e277a249851ca604e5ba09f,
+    type: 3}
 --- !u!61 &2642918887565426937
 BoxCollider2D:
   m_ObjectHideFlags: 0

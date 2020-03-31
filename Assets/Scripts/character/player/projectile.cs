@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PrimaryWepData;
 
-public class EnemyProjectile : MonoBehaviour
+public class projectile : MonoBehaviour
 {
     Animator projectileAnim;
 	public float speed;
 	public Vector2 direction;
 	public float maxRange;
-	public int damage;
+
+    PrimWepAttack weapon;
 
 	// Use this for initialization
 	void Start () {
+        weapon = new PrimWepAttack(Iron.damage, Iron.knockback, GameObject.FindGameObjectWithTag("Player"));
 		projectileAnim = GetComponent<Animator>();
 	}
 
@@ -34,12 +37,12 @@ public class EnemyProjectile : MonoBehaviour
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)	{
-		if (/*collision.gameObject.CompareTag("Platform")||*/collision.gameObject.CompareTag("Player")) {
-			if (collision.gameObject.CompareTag("Player")) {
-				GameObject.FindWithTag("Player").GetComponent<playerCombat>().takeDamage(damage);;
+		if (!collision.gameObject.CompareTag("Player")&&collision.gameObject.CompareTag("enemy")) {
+			if (collision.gameObject.CompareTag("enemy")) {
+				collision.gameObject.SendMessage("takeMeleeDamage", weapon, SendMessageOptions.DontRequireReceiver);
 			}
-			projectileAnim.SetTrigger("collision");
-			Destroy(this.gameObject);
+            projectileAnim.SetTrigger("collision");
+            Destroy(this.gameObject);
 		}
 	}
 }

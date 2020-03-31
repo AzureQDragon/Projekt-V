@@ -9,6 +9,7 @@ TagManager:
   - playerAttackPivot
   - UI
   - pauseMenu
+  - playerMelee
   layers:
   - Default
   - TransparentFX

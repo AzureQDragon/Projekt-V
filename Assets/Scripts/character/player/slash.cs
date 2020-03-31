@@ -32,10 +32,11 @@ public class slash : MonoBehaviour
         }
     }
 
-    /* void OnTriggerExit2D(Collider2D collider)
+    void OnTriggerExit2D(Collider2D collider)
     {
         canHit = false;
-    } */
+        target = null;
+    }
 
     public void dealDamage(GameObject target)
     {
